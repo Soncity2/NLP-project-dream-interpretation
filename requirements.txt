@@ -1,0 +1,19 @@
+# For model fine-tuning and working with LLaMA 2 and Bloom
+transformers<=4.32.0          # For handling model architectures and training
+datasets<=2.10.0              # For loading and processing datasets
+accelerate<=0.21.0            # For distributed training and hardware acceleration
+torch<=2.1.0                  # Required for LLaMA, Bloom fine-tuning
+
+numpy<=1.24.2
+pandas<=1.5.0
+matplotlib<=3.8.2
+seaborn<=0.13.0
+scikit-learn<=1.2.1
+
+# For evaluation metrics (if needed)
+rouge_score<=0.1.0            # For ROUGE score evaluation
+sacrebleu<=2.3.1              # For BLEU score evaluation
+bert-score<=0.3.13            # For BERTScore evaluation
+
+# For progress bars in loops (optional)
+tqdm<=4.66.1                  # For progress bars during training
