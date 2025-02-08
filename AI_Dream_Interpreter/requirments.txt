@@ -1,0 +1,12 @@
+torch
+transformers
+datasets
+evaluate
+PyPDF2
+fastapi
+uvicorn
+pydantic
+yaml
+bitsandbytes
+peft
+accelerate
