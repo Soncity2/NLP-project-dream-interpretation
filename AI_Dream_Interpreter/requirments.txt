@@ -6,7 +6,7 @@ PyPDF2
 fastapi
 uvicorn
 pydantic
-yaml
+pyyaml
 bitsandbytes
 peft
 accelerate
