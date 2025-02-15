@@ -3,7 +3,7 @@ import argparse
 from pathlib import Path
 
 # Directories
-PROCESSED_DIR = Path("data/processed")
+PROCESSED_DIR = Path("../data/processed")
 OUTPUT_FILE = PROCESSED_DIR / "dataset.txt"
 
 

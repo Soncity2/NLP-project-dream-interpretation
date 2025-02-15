@@ -3,7 +3,7 @@ from transformers import AutoTokenizer
 import os
 
 # Directories
-PROCESSED_DIR = os.path.abspath("data/processed")
+PROCESSED_DIR = os.path.abspath("../data/processed")
 DATASET_FILE = os.path.join(PROCESSED_DIR, "dataset.txt")
 TOKENIZED_OUTPUT_DIR = os.path.join(PROCESSED_DIR, "tokenized_dataset")
 

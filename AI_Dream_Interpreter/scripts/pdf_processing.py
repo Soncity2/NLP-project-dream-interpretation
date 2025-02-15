@@ -4,8 +4,8 @@ from pathlib import Path
 from PyPDF2 import PdfReader
 
 # Directories
-RAW_PDF_DIR = Path("data/raw_pdfs")
-PROCESSED_DIR = Path("data/processed")
+RAW_PDF_DIR = Path("../data/raw_pdfs")
+PROCESSED_DIR = Path("../data/processed")
 
 print(PROCESSED_DIR)
 

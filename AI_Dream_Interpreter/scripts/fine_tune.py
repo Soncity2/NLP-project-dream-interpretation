@@ -6,8 +6,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments,
 from datasets import load_from_disk
 
 # Paths
-CONFIG_PATH = Path("config/training_config.yaml")
-TOKENIZED_DATASET_DIR = Path("data/processed/tokenized_dataset")
+CONFIG_PATH = Path("../config/training_config.yaml")
+TOKENIZED_DATASET_DIR = Path("../data/processed/tokenized_dataset")
 
 
 def load_training_config():

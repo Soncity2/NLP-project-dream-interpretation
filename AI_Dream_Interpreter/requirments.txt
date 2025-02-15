@@ -1,12 +1,22 @@
-torch
-transformers
-datasets
-evaluate
-PyPDF2
-fastapi
-uvicorn
-pydantic
-pyyaml
-bitsandbytes
-peft
-accelerate
+# Machine Learning & NLP Libraries
+torch>=2.1.2  # PyTorch for model training (use correct version for your hardware)
+torchvision>=0.16.2  # Image-related tasks (might be optional)
+torchaudio>=2.1.2  # Audio processing (only needed if using audio models)
+
+# Hugging Face Transformers & Datasets
+transformers>=4.38.1  # Hugging Face Transformers for LLaMA 2
+datasets>=2.18.0  # Hugging Face Datasets for data handling
+peft>=0.9.0  # Parameter-efficient fine-tuning
+accelerate>=0.26.0  # Efficient model training (required for large models)
+
+# Tokenization & Processing
+sentencepiece>=0.1.99  # Tokenizer for LLaMA 2 and other models
+protobuf>=3.20.3  # Avoids compatibility issues with Hugging Face & PyTorch
+pyyaml>=6.0.1  # YAML support for training config file
+tqdm>=4.66.2  # Progress bars
+
+# PDF Processing
+pypdf2>=3.0.1  # Extract text from PDFs
+
+# Optional - If Running on GPU, Install CUDA-Specific PyTorch
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
