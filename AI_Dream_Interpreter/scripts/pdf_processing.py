@@ -7,6 +7,8 @@ from PyPDF2 import PdfReader
 RAW_PDF_DIR = Path("data/raw_pdfs")
 PROCESSED_DIR = Path("data/processed")
 
+print(PROCESSED_DIR)
+
 # Ensure processed directory exists
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
