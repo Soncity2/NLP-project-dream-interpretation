@@ -85,7 +85,7 @@ Output: Fine-tuned model saved in models/fine_tuned_llama2/.
 ```
 📊 5️⃣ Evaluate the Fine-Tuned Model
 ```sh
-python scripts/evaluate.py
+python scripts/evaluate_models.py
 Output: Evaluation results saved in data/processed/evaluation_results.json.
 ```
 ___

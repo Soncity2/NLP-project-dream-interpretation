@@ -1,51 +1,55 @@
-import os
-import argparse
+import re
+import json
+import nltk
 from pathlib import Path
+
+nltk.download("punkt_tab")
 
 # Directories
 PROCESSED_DIR = Path("../data/processed")
-OUTPUT_FILE = PROCESSED_DIR / "dataset.txt"
+PDF_TXT_PATH = PROCESSED_DIR / "dreams.txt"
+OUTPUT_FILE = PROCESSED_DIR / "dataset.jsonl"
 
 
-def clean_text(text):
-    """Cleans text by removing extra spaces and ensuring proper formatting."""
-    text = text.strip()  # Remove leading/trailing spaces
-    text = " ".join(text.split())  # Normalize spaces
-    return text
+def extract_dreams_interpretations(text):
+    """Extracts dream descriptions and interpretations from Freud’s raw text."""
+    sentences = nltk.sent_tokenize(text)
+
+    dream_patterns = [r"dream", r"vision", r"nightmare", r"asleep", r"dreamed"]
+    interpretation_patterns = [r"interpreted", r"symbolizes", r"means", r"indicates", r"represents"]
+
+    dream_interpretation_pairs = []
+    current_dream = None
+    current_interpretation = None
+
+    for i, sentence in enumerate(sentences):
+        # Identify a dream-related sentence
+        if any(re.search(pattern, sentence, re.IGNORECASE) for pattern in dream_patterns):
+            current_dream = sentence.strip()
+
+        # Identify an interpretation-related sentence following a dream
+        if current_dream and any(re.search(pattern, sentence, re.IGNORECASE) for pattern in interpretation_patterns):
+            current_interpretation = sentence.strip()
+            dream_interpretation_pairs.append({"prompt": current_dream, "response": current_interpretation})
+            current_dream = None  # Reset for next pair
+
+    return dream_interpretation_pairs
 
 
-def split_text(text, chunk_size=512):
-    """Splits text into smaller chunks for better processing."""
-    words = text.split()
-    chunks = []
-    for i in range(0, len(words), chunk_size):
-        chunks.append(" ".join(words[i:i + chunk_size]))  # Create chunks of words
-    return chunks
+def save_to_jsonl():
+    """Processes the Freud text and saves extracted pairs into JSONL."""
+    with open(PDF_TXT_PATH, "r", encoding="utf-8") as f:
+        text = f.read()
 
+    pairs = extract_dreams_interpretations(text)
 
-def prepare_dataset():
-    """Reads processed .txt files and creates a structured dataset."""
-    txt_files = list(PROCESSED_DIR.glob("*.txt"))
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        for pair in pairs:
+            json.dump(pair, f)
+            f.write("\n")
 
-    if not txt_files:
-        print("No processed text files found.")
-        return
-
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as output_file:
-        for txt_file in txt_files:
-            with open(txt_file, "r", encoding="utf-8") as f:
-                text = f.read()
-                cleaned_text = clean_text(text)  # Apply text cleaning
-                text_chunks = split_text(cleaned_text)  # Break into smaller parts
-
-                for chunk in text_chunks:
-                    output_file.write(chunk + "\n\n")  # Separate chunks with newlines
-
-    print(f"Dataset saved to {OUTPUT_FILE} with {len(text_chunks)} entries.")
+    print(f"Extracted {len(pairs)} dream-interpretation pairs. Saved at {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Prepare dataset from extracted text files.")
-    args = parser.parse_args()
-
-    prepare_dataset()
+    save_to_jsonl()

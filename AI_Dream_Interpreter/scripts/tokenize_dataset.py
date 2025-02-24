@@ -11,7 +11,8 @@ TOKENIZED_OUTPUT_DIR = os.path.join(PROCESSED_DIR, "tokenized_dataset")
 os.makedirs(TOKENIZED_OUTPUT_DIR, exist_ok=True)
 
 # Load tokenizer
-MODEL_NAME = "meta-llama/Llama-2-7b-hf"
+#MODEL_NAME = "meta-llama/Llama-2-7b-hf"
+MODEL_NAME = "openai-community/gpt2"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
 # LLaMA does not have a default pad token, so we set it manually

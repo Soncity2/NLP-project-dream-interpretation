@@ -1,22 +1,29 @@
-# Machine Learning & NLP Libraries
-torch>=2.1.2  # PyTorch for model training (use correct version for your hardware)
-torchvision>=0.16.2  # Image-related tasks (might be optional)
-torchaudio>=2.1.2  # Audio processing (only needed if using audio models)
+# Install PyTorch with CUDA 12.1 (Closest Officially Supported Version)
+--index-url https://download.pytorch.org/whl/cu121
+torch>=2.1.2+cu121
+torchvision>=0.16.2+cu121
+torchaudio>=2.1.2+cu121
 
-# Hugging Face Transformers & Datasets
-transformers>=4.38.1  # Hugging Face Transformers for LLaMA 2
-datasets>=2.18.0  # Hugging Face Datasets for data handling
-peft>=0.9.0  # Parameter-efficient fine-tuning
-accelerate>=0.26.0  # Efficient model training (required for large models)
+# Hugging Face Libraries
+transformers>=4.37.0
+datasets>=2.18.0
+peft>=0.9.0
+accelerate>=0.26.0
+
+# Evaluation & Metrics
+evaluate>=0.4.1  # Hugging Face evaluate library (BLEU, ROUGE, Perplexity, BERTScore)
+bert-score>=0.3.13  # Required for BERTScore metric
+scipy>=1.11.4  # Required for metric calculations
 
 # Tokenization & Processing
-sentencepiece>=0.1.99  # Tokenizer for LLaMA 2 and other models
-protobuf>=3.20.3  # Avoids compatibility issues with Hugging Face & PyTorch
-pyyaml>=6.0.1  # YAML support for training config file
-tqdm>=4.66.2  # Progress bars
+sentencepiece>=0.1.99
+protobuf>=3.20.3
+pyyaml>=6.0.1
+tqdm>=4.66.2
+nltk>=3.8.1  # Required for tokenizing BLEU metric
 
-# PDF Processing
-pypdf2>=3.0.1  # Extract text from PDFs
-
-# Optional - If Running on GPU, Install CUDA-Specific PyTorch
-# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# LangChain & Dependencies
+langchain
+langchain_community
+pypdf
+openai>=1.0.0

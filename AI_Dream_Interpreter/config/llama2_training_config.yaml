@@ -1,0 +1,19 @@
+# General training settings
+model_name: "meta-llama/Llama-2-7b-hf"  # Model checkpoint
+output_dir: "../models/fine_tuned_llama2"  # Where to save the fine-tuned model
+log_dir: "../logs"  # Directory to store training logs
+
+# Training hyperparameters
+batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 5e-5
+weight_decay: 0.01
+logging_steps: 50
+save_steps: 500
+save_total_limit: 2
+evaluation_strategy: "steps"
+eval_steps: 500
+warmup_steps: 100
+num_train_epochs: 3
+fp16: True  # Enable mixed-precision training
+report_to: "none"  # Set to "wandb" if using Weights & Biases
