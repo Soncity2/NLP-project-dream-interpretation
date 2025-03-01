@@ -4,7 +4,7 @@ import os
 
 # Directories
 PROCESSED_DIR = os.path.abspath("../data/processed")
-DATASET_FILE = os.path.join(PROCESSED_DIR, "dataset.txt")
+DATASET_FILE = os.path.join(PROCESSED_DIR, "dreams_freudian_structured.txt")
 TOKENIZED_OUTPUT_DIR = os.path.join(PROCESSED_DIR, "tokenized_dataset")
 
 # Ensure the tokenized dataset directory exists
