@@ -25,7 +25,7 @@ generator = pipeline("text2text-generation", model=model, tokenizer=tokenizer)
 
 
 def extract_text_from_pdf(pdf_path, max_tokens=3000):
-    """Extracts raw text from a PDF and limits token length."""
+    """Extracts raw text from PDF and limits token length."""
     loader = PyPDFLoader(pdf_path)
     documents = loader.load()
 
