@@ -1,55 +1,36 @@
-import re
-import json
-import nltk
-from pathlib import Path
-
-nltk.download("punkt_tab")
+import csv
+import os
 
 # Directories
-PROCESSED_DIR = Path("../data/processed")
-PDF_TXT_PATH = PROCESSED_DIR / "dreams.txt"
-OUTPUT_FILE = PROCESSED_DIR / "dataset.jsonl"
+PROCESSED_DIR = os.path.abspath("../data/processed")
+DATASET_FILE = os.path.join(PROCESSED_DIR, "dreams_freudian_structured.txt")
+CSV_OUTPUT_FILE = os.path.join(PROCESSED_DIR, "dreams_interpretations.csv")
 
+# Ensure the processed directory exists
+os.makedirs(PROCESSED_DIR, exist_ok=True)
 
-def extract_dreams_interpretations(text):
-    """Extracts dream descriptions and interpretations from Freud’s raw text."""
-    sentences = nltk.sent_tokenize(text)
+def save_to_csv():
 
-    dream_patterns = [r"dream", r"vision", r"nightmare", r"asleep", r"dreamed"]
-    interpretation_patterns = [r"interpreted", r"symbolizes", r"means", r"indicates", r"represents"]
+        """Converts structured TXT file into a CSV with 'Dream' and 'Interpretation' columns."""
+        if not os.path.exists(DATASET_FILE):
+            raise FileNotFoundError(f"Dataset file not found: {DATASET_FILE}")
 
-    dream_interpretation_pairs = []
-    current_dream = None
-    current_interpretation = None
+        data = []
 
-    for i, sentence in enumerate(sentences):
-        # Identify a dream-related sentence
-        if any(re.search(pattern, sentence, re.IGNORECASE) for pattern in dream_patterns):
-            current_dream = sentence.strip()
+        # Read and process the TXT file
+        with open(DATASET_FILE, "r", encoding="utf-8") as f:
+            for line in f:
+                if ":" in line:
+                    dream, interpretation = line.strip().split(":", 1)
+                    data.append([dream.strip(), interpretation.strip()])
 
-        # Identify an interpretation-related sentence following a dream
-        if current_dream and any(re.search(pattern, sentence, re.IGNORECASE) for pattern in interpretation_patterns):
-            current_interpretation = sentence.strip()
-            dream_interpretation_pairs.append({"prompt": current_dream, "response": current_interpretation})
-            current_dream = None  # Reset for next pair
+        # Save to CSV
+        with open(CSV_OUTPUT_FILE, "w", encoding="utf-8", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Dream", "Interpretation"])  # Column headers
+            writer.writerows(data)
 
-    return dream_interpretation_pairs
-
-
-def save_to_jsonl():
-    """Processes the Freud text and saves extracted pairs into JSONL."""
-    with open(PDF_TXT_PATH, "r", encoding="utf-8") as f:
-        text = f.read()
-
-    pairs = extract_dreams_interpretations(text)
-
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        for pair in pairs:
-            json.dump(pair, f)
-            f.write("\n")
-
-    print(f"Extracted {len(pairs)} dream-interpretation pairs. Saved at {OUTPUT_FILE}")
-
+        print(f"CSV file saved to: {CSV_OUTPUT_FILE}")
 
 if __name__ == "__main__":
-    save_to_jsonl()
+    save_to_csv()

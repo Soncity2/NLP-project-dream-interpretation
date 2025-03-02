@@ -1,50 +1,59 @@
+import os
+import pandas as pd
 from datasets import Dataset
 from transformers import AutoTokenizer
-import os
 
 # Directories
 PROCESSED_DIR = os.path.abspath("../data/processed")
-DATASET_FILE = os.path.join(PROCESSED_DIR, "dreams_freudian_structured.txt")
+RAW_DIR = os.path.abspath("../data/raw_pdfs")
+#CSV_DATASET_FILE = os.path.join(PROCESSED_DIR, "dreams_interpretations.csv")  # Updated input file
+CSV_DATASET_FILE = os.path.join(RAW_DIR, "dreams_interpretations.csv")
 TOKENIZED_OUTPUT_DIR = os.path.join(PROCESSED_DIR, "tokenized_dataset")
 
 # Ensure the tokenized dataset directory exists
 os.makedirs(TOKENIZED_OUTPUT_DIR, exist_ok=True)
 
 # Load tokenizer
-#MODEL_NAME = "meta-llama/Llama-2-7b-hf"
 MODEL_NAME = "openai-community/gpt2"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
-# LLaMA does not have a default pad token, so we set it manually
+# Ensure a padding token is set (GPT-2 does not have one by default)
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 
 def tokenize_function(examples):
-    """Tokenizes text data for LLaMA 2."""
+    """Tokenizes text data."""
     return tokenizer(
         examples["text"],
-        padding="max_length",
+        padding="longest",
         truncation=True,
-        max_length=512
+        max_length=100
     )
 
 def tokenize_dataset():
-    """Tokenizes dataset for fine-tuning LLaMA 2."""
-    if not os.path.exists(DATASET_FILE):
-        raise FileNotFoundError(f"Dataset file not found: {DATASET_FILE}")
+    """Tokenizes dataset from CSV for fine-tuning."""
+    if not os.path.exists(CSV_DATASET_FILE):
+        raise FileNotFoundError(f"Dataset file not found: {CSV_DATASET_FILE}")
 
-    # Read dataset manually
-    with open(DATASET_FILE, "r", encoding="utf-8") as f:
-        lines = f.readlines()
+    # Load dataset from CSV
+    df = pd.read_csv(CSV_DATASET_FILE)
 
-    # Convert text into a Hugging Face Dataset format
-    dataset = Dataset.from_dict({"text": [line.strip() for line in lines if line.strip()]})
+    # Ensure columns exist
+    if "Dream Symbol" not in df.columns or "Interpretation" not in df.columns:
+        raise ValueError("CSV must contain 'Dream Symbol' and 'Interpretation' columns.")
+
+    # Merge Dream and Interpretation into a single text prompt
+    df["text"] = "Dream: " + df["Dream Symbol"] + "\nInterpretation: " + df["Interpretation"] + "\n"
+
+    # Convert to Hugging Face Dataset format
+    dataset = Dataset.from_pandas(df[["text"]])
 
     # Tokenize dataset
     tokenized_dataset = dataset.map(tokenize_function, batched=True)
 
-    # Ensure the directory exists before saving
-    os.makedirs(TOKENIZED_OUTPUT_DIR, exist_ok=True)
+    # Print sample for debugging
+    tokens = tokenizer(df["text"].iloc[0])
+    print("Tokenized sample:", tokens)
 
     # Save tokenized dataset
     tokenized_dataset.save_to_disk(TOKENIZED_OUTPUT_DIR)
