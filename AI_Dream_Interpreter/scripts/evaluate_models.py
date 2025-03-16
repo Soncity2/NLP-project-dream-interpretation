@@ -1,12 +1,14 @@
 import torch
 import json
 from pathlib import Path
-from transformers import AutoModelForCausalLM, T5ForConditionalGeneration, AutoTokenizer
+from transformers import AutoModelForCausalLM, BartForConditionalGeneration, AutoTokenizer
 import evaluate
 import logging
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-MODEL_DIR = Path("../models/fine_tuned_gpt2")
+# Directories for the fine-tuned models
+GPT2_MODEL_DIR = Path("../models/fine_tuned_gpt2")
+BART_MODEL_DIR = Path("../models/fine_tuned_bart")
 PROCESSED_DIR = Path("../data/processed")
 EVAL_RESULTS_FILE = PROCESSED_DIR / "results/evaluation_results.json"
 DREAMS_FILE = PROCESSED_DIR / "dreams_freudian_structured.txt"
@@ -26,13 +28,14 @@ def read_dreams_file(dreams_file):
     logging.info(f"Loaded {len(dreams)} dream-interpretation pairs.")
     return dreams, interpretations
 
-def generate_text(model, tokenizer, prompt, max_length=512, is_t5=False):
+def generate_text(model, tokenizer, prompt, max_length=512):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(device)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    prompt = f"interpret dream: {prompt}" if is_t5 else f"Dream: {prompt}\nInterpretation:"
-    inputs = tokenizer(prompt, return_tensors="pt", truncation=True).to(device)
+    # Use the same prompt format for both GPT-2 and BART
+    formatted_prompt = f"Dream: {prompt}\nInterpretation:"
+    inputs = tokenizer(formatted_prompt, return_tensors="pt", truncation=True).to(device)
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
@@ -44,13 +47,17 @@ def generate_text(model, tokenizer, prompt, max_length=512, is_t5=False):
             do_sample=True
         )
     generated = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    return generated[len(prompt):].strip()
+    # Remove the prompt from the generated text (if present)
+    return generated[len(formatted_prompt):].strip()
 
-def evaluate_models(model_dir, model_name, is_t5=False):
+def evaluate_models(model_dir, model_name, is_bart=False):
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = (T5ForConditionalGeneration if is_t5 else AutoModelForCausalLM).from_pretrained(model_dir)
+    if is_bart:
+        model = BartForConditionalGeneration.from_pretrained(model_dir)
+    else:
+        model = AutoModelForCausalLM.from_pretrained(model_dir)
     dreams, true_interps = read_dreams_file(DREAMS_FILE)
-    generated_interps = [generate_text(model, tokenizer, dream, is_t5=is_t5) for dream in dreams[:10]]
+    generated_interps = [generate_text(model, tokenizer, dream) for dream in dreams[:10]]
     bleu = bleu_metric.compute(predictions=generated_interps, references=true_interps[:10])
     rouge = rouge_metric.compute(predictions=generated_interps, references=true_interps[:10])
     bertscore = bertscore_metric.compute(predictions=generated_interps, references=true_interps[:10], lang="en")
@@ -67,10 +74,10 @@ def evaluate_models(model_dir, model_name, is_t5=False):
     return results
 
 def compare_models():
-    gpt2_res = evaluate_models(MODEL_DIR, "GPT-2")
-    t5_res = evaluate_models(Path("../models/fine_tuned_t5"), "T5", is_t5=True)
+    gpt2_res = evaluate_models(GPT2_MODEL_DIR, "GPT-2")
+    bart_res = evaluate_models(BART_MODEL_DIR, "BART", is_bart=True)
     logging.info("Comparison Results:")
-    for res in [gpt2_res, t5_res]:
+    for res in [gpt2_res, bart_res]:
         logging.info(f"Model: {res['model']}")
         logging.info(f"BLEU: {res['BLEU']:.4f}")
         logging.info(f"ROUGE-L: {res['ROUGE-L']:.4f}")
