@@ -3,55 +3,52 @@ from langchain.document_loaders import PyMuPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
+import logging
 
-# File paths
-dreams_file_path = "common-dreams-psychology.md"  # List of common dreams
-freud_pdf_path = "dreams.pdf"  # Freud's book
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+dreams_file_path = "common-dreams-psychology.md"
+freud_pdf_path = "dreams.pdf"
+output_file_path = "dreams_with_freudian_interpretations_structured.txt"
 
-# Load Freud's text from PDF using LangChain
-print("Loading Freud's book...")
 freud_loader = PyMuPDFLoader(freud_pdf_path)
 freud_documents = freud_loader.load()
-
-# Clean and Split Freud's text for efficient searching
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
 freud_chunks = text_splitter.split_text("\n".join([doc.page_content for doc in freud_documents]))
-
-# Create a searchable vector database (FAISS) for Freud’s interpretations
-print("Indexing Freud's interpretations...")
-embedding_model = OpenAIEmbeddings()  # Requires OpenAI API key
+embedding_model = OpenAIEmbeddings()
 vector_db = FAISS.from_texts(freud_chunks, embedding_model)
 
-# Load and process the list of common dreams
-print("Processing common dreams...")
 dream_loader = TextLoader(dreams_file_path)
 dream_documents = dream_loader.load()
-dream_chunks = text_splitter.split_text(dream_documents[0].page_content)
+raw_dream_text = dream_documents[0].page_content
+dream_chunks = [d.strip() for d in raw_dream_text.split("\n") if d.strip() and not d.startswith(("#", "- "))]
 
-# Define function to find relevant Freud interpretations
+def clean_text(text):
+    return re.sub(r"\s+", " ", text).strip()
+
 def get_freud_interpretation(dream):
-    """Searches Freud's book for the most relevant interpretation of a dream."""
-    search_results = vector_db.similarity_search(dream, k=1)  # Retrieve top match
-    return search_results[0].page_content if search_results else "Interpretation can't be inferred from Freudian dream analysis principles."
-
-
+    search_results = vector_db.similarity_search(dream, k=2)
+    if search_results:
+        interpretation = " ".join([res.page_content for res in search_results])[:500]
+        return clean_text(interpretation)
+    return "No clear Freudian interpretation found."
 
 def process_pdfs():
-    print("Generating interpretations...")
     dream_interpretation_pairs = []
+    skipped = 0
     for dream in dream_chunks:
-        dream = dream.strip()
-        if dream and not dream.startswith("#") and not dream.isdigit():  # Ignore headings and numbers
-            interpretation = get_freud_interpretation(dream)
-            dream_interpretation_pairs.append(f"{dream} : {interpretation}")
-
-    # Step 7: Save structured output to a file
-    output_file_path = "dreams_with_freudian_interpretations_structured.txt"
+        dream = clean_text(dream)
+        if len(dream) < 10:
+            skipped += 1
+            continue
+        interpretation = get_freud_interpretation(dream)
+        if "can't be inferred" in interpretation or len(interpretation) < 20:
+            skipped += 1
+            continue
+        dream_interpretation_pairs.append(f"{dream} : {interpretation}")
     with open(output_file_path, "w", encoding="utf-8") as file:
         file.write("\n".join(dream_interpretation_pairs))
-
-    print(f"Structured dream interpretations saved to {output_file_path}")
-
+    logging.info(f"Saved {len(dream_interpretation_pairs)} pairs to {output_file_path}")
+    logging.info(f"Skipped {skipped} entries due to length or quality filters.")
 
 if __name__ == "__main__":
     process_pdfs()
