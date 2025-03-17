@@ -12,10 +12,12 @@ BART_MODEL_DIR = Path("../models/fine_tuned_bart")
 PROCESSED_DIR = Path("../data/processed")
 EVAL_RESULTS_FILE = PROCESSED_DIR / "results/evaluation_results.json"
 DREAMS_FILE = PROCESSED_DIR / "dreams_freudian_structured.txt"
+ROOT_PATH = "/home/linuxu/PycharmProjects"
 
-bleu_metric = evaluate.load("bleu")
-rouge_metric = evaluate.load("rouge")
-bertscore_metric = evaluate.load("bertscore")
+# Load metrics: load BLEU with sacreBLEU configuration
+bleu_metric = evaluate.load(ROOT_PATH + "/NLP-project-dream-interpretation/evaluate/metrics/bleu/bleu.py", config="sacrebleu")
+rouge_metric = evaluate.load(ROOT_PATH + "/NLP-project-dream-interpretation/evaluate/metrics/rouge/rouge.py")
+bertscore_metric = evaluate.load(ROOT_PATH + "/NLP-project-dream-interpretation/evaluate/metrics/bertscore/bertscore.py")
 
 def read_dreams_file(dreams_file):
     dreams, interpretations = [], []
@@ -58,12 +60,12 @@ def evaluate_models(model_dir, model_name, is_bart=False):
         model = AutoModelForCausalLM.from_pretrained(model_dir)
     dreams, true_interps = read_dreams_file(DREAMS_FILE)
     generated_interps = [generate_text(model, tokenizer, dream) for dream in dreams[:10]]
-    bleu = bleu_metric.compute(predictions=generated_interps, references=true_interps[:10])
+    bleu = bleu_metric.compute(predictions=generated_interps, references=[true_interps[:10]])
     rouge = rouge_metric.compute(predictions=generated_interps, references=true_interps[:10])
     bertscore = bertscore_metric.compute(predictions=generated_interps, references=true_interps[:10], lang="en")
     results = {
         "model": model_name,
-        "BLEU": bleu["bleu"],
+        "SacreBLEU": bleu["score"],
         "ROUGE-L": rouge["rougeL"],
         "BERTScore-F1": sum(bertscore["f1"]) / len(bertscore["f1"]),
         "samples": [{"dream": d, "generated": g} for d, g in zip(dreams[:10], generated_interps)]
@@ -79,7 +81,7 @@ def compare_models():
     logging.info("Comparison Results:")
     for res in [gpt2_res, bart_res]:
         logging.info(f"Model: {res['model']}")
-        logging.info(f"BLEU: {res['BLEU']:.4f}")
+        logging.info(f"SacreBLEU: {res['SacreBLEU']:.4f}")
         logging.info(f"ROUGE-L: {res['ROUGE-L']:.4f}")
         logging.info(f"BERTScore-F1: {res['BERTScore-F1']:.4f}\n")
         for sample in res["samples"][:3]:
