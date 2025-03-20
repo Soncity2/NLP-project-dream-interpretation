@@ -1,0 +1,382 @@
+{
+    "BLEU": {
+        "bleu": 0.0,
+        "precisions": [
+            0.033813400125234816,
+            0.0008437038599451593,
+            0.00021317416329140907,
+            0.0
+        ],
+        "brevity_penalty": 1.0,
+        "length_ratio": 13.38268156424581,
+        "translation_length": 4791,
+        "reference_length": 358
+    },
+    "ROUGE": {
+        "rouge1": 0.049146794724824555,
+        "rouge2": 0.0017681159420289852,
+        "rougeL": 0.03873943398738323,
+        "rougeLsum": 0.03903667758880924
+    },
+    "BERTScore": {
+        "precision": [
+            0.8040763139724731,
+            0.798490047454834,
+            0.8090866804122925,
+            0.8010005950927734,
+            0.804824948310852,
+            0.798595666885376,
+            0.8129159212112427,
+            0.7868403196334839,
+            0.8041664361953735,
+            0.8066035509109497,
+            0.8049825429916382,
+            0.7914739847183228,
+            0.8046776652336121,
+            0.8175631761550903,
+            0.8068327903747559,
+            0.810006856918335,
+            0.8180563449859619,
+            0.7877551317214966,
+            0.8054150342941284,
+            0.8141506910324097,
+            0.8185489773750305,
+            0.8034323453903198,
+            0.8098424077033997,
+            0.7924672365188599,
+            0.8065420985221863,
+            0.8119642734527588,
+            0.8011742234230042,
+            0.81378173828125,
+            0.8084477186203003,
+            0.8055682182312012,
+            0.7975455522537231,
+            0.8215110301971436,
+            0.8218716382980347,
+            0.815616250038147,
+            0.8123221397399902,
+            0.810546338558197,
+            0.8058981895446777,
+            0.8093794584274292,
+            0.8057729601860046,
+            0.7995929718017578,
+            0.7962833642959595,
+            0.7989470362663269,
+            0.8209932446479797,
+            0.8124651312828064,
+            0.8071537017822266,
+            0.8040159940719604,
+            0.8027523756027222,
+            0.8168959617614746,
+            0.8164764642715454,
+            0.8127301931381226
+        ],
+        "recall": [
+            0.8569371700286865,
+            0.8428189754486084,
+            0.868244469165802,
+            0.8522255420684814,
+            0.8517243266105652,
+            0.8341348767280579,
+            0.8606943488121033,
+            0.8715407848358154,
+            0.8685581684112549,
+            0.8502552509307861,
+            0.8517887592315674,
+            0.84798264503479,
+            0.8705824017524719,
+            0.8791000247001648,
+            0.8592322468757629,
+            0.8555017709732056,
+            0.9306508302688599,
+            0.8558764457702637,
+            0.8644239902496338,
+            0.8731261491775513,
+            0.869719386100769,
+            0.838897705078125,
+            0.8210638761520386,
+            0.8075696229934692,
+            0.8489931225776672,
+            0.8530681729316711,
+            0.8612146377563477,
+            0.8744528293609619,
+            0.8603564500808716,
+            0.8738277554512024,
+            0.8467609286308289,
+            0.8847874999046326,
+            0.867325484752655,
+            0.8668631315231323,
+            0.8479204177856445,
+            0.8862019777297974,
+            0.838228702545166,
+            0.8490168452262878,
+            0.8357486128807068,
+            0.8372594714164734,
+            0.855910062789917,
+            0.8484076857566833,
+            0.8785548210144043,
+            0.8565763235092163,
+            0.8502717614173889,
+            0.834665060043335,
+            0.8340662717819214,
+            0.836587131023407,
+            0.873126745223999,
+            0.8670685887336731
+        ],
+        "f1": [
+            0.8296656012535095,
+            0.8200559020042419,
+            0.8376222848892212,
+            0.8258194923400879,
+            0.8276107907295227,
+            0.8159785270690918,
+            0.8361232280731201,
+            0.8270275592803955,
+            0.8351229429244995,
+            0.8278543949127197,
+            0.8277244567871094,
+            0.8187544941902161,
+            0.836333692073822,
+            0.8472156524658203,
+            0.832208514213562,
+            0.8321329355239868,
+            0.8707287907600403,
+            0.8204041123390198,
+            0.83387690782547,
+            0.8426077365875244,
+            0.8433586955070496,
+            0.8207820653915405,
+            0.815414547920227,
+            0.7999471426010132,
+            0.8272233605384827,
+            0.8320088982582092,
+            0.8301101922988892,
+            0.8430270552635193,
+            0.8335947394371033,
+            0.8383108377456665,
+            0.8214167356491089,
+            0.8519759178161621,
+            0.8439870476722717,
+            0.8404592275619507,
+            0.8297396302223206,
+            0.8466875553131104,
+            0.8217455744743347,
+            0.8287245035171509,
+            0.8204871416091919,
+            0.8179928064346313,
+            0.8250207304954529,
+            0.8229348063468933,
+            0.8487992882728577,
+            0.8339378833770752,
+            0.8281518816947937,
+            0.8190538883209229,
+            0.8181098103523254,
+            0.8266242146492004,
+            0.8438519239425659,
+            0.8390204906463623
+        ],
+        "hashcode": "roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.49.0)"
+    },
+    "generated_samples": [
+        {
+            "dream": "Falling",
+            "generated_interpretation": "Falling. Interpretation: To dream that you are falling or waking up in a fall signifies an early transition into adulthood, especially if the dreams take place before your real-life transitions to work and life outside of school. You may be experiencing some emotional distress at this stage. Alternatively it indicates feelings of guilt about something which is not true for certain people. In particular, someone who has lost their virginity will often find themselves with doubts as to whether they were born again on earth\u00a0or by another"
+        },
+        {
+            "dream": "Being naked in public",
+            "generated_interpretation": "Being naked in public. Interpretation: To dream that you are nude suggests a lack of self-esteem, fear and/or guilt about your sexuality or relationship status within the sexual community at large.[1] It is also symbolic for those who do not have an outlet to express their thoughts freely on any matter. If someone has been clothed with tattoos then it indicates some sort\u00a0preoccupations which may be inhibiting them from expressing themselves effectively. Alternatively dreaming of being fully exposed means that there is"
+        },
+        {
+            "dream": "Flying",
+            "generated_interpretation": "Flying: Electric\nCar. Interpretation: To see an electric car in your dream represents a transition from being driven by some instinctive behavior or passion to driving yourself toward greater self-identity and personal power.\u00a0 It also implies that you need more control of the situation, especially if there is any issue at hand which may be causing anxiety for others. Alternatively it suggests that someone who desires to escape reality has abandoned their old path of thinking. You are ready with a new idea or life plan"
+        },
+        {
+            "dream": "Teeth falling out",
+            "generated_interpretation": "Teeth falling out of your mouth. Interpretation: To dream that you are being farted suggests a lack in self-esteem and confidence. You need to let go of some old feelings or take responsibility for the things that you have done wrong. Alternatively, it may indicate that you don't want anyone else to know about your secret identity. Perhaps there is something shameful behind what you do. Something has been\u00a0wrong with your life. In particular Darth Vader's death symbolizes freedom, immortality &"
+        },
+        {
+            "dream": "Death",
+            "generated_interpretation": "Death: Death. Interpretation: To dream that you are dying signifies your need for self-reliance and spiritual enlightenment, especially if there is an obstacle in your path. You feel trapped or unable to move forward with some decision about a relationship. Alternatively the death symbolizes rebirth. The life itself may be symbolic of materialism or immortality. Perhaps it refers back to something old or distant. Consider also what type of coffin was used before being put on display at the funeral home where this message will"
+        },
+        {
+            "dream": "Exams or tests",
+            "generated_interpretation": "Exams or tests. Interpretation: To dream that you are wearing a test indicates an understanding of some aspect in your waking life which may be lacking from past experiences.\u00a0 You need to incorporate it into your current situation. Alternatively, the dreaming suggests that there is something hidden and unexpressed within yourself which needs to be addressed immediately. The subconscious desires to see certain aspects of yourself revealed before taking action on them. In particular if you have been rejected by society for being too \"male\", then this"
+        },
+        {
+            "dream": "Being chased",
+            "generated_interpretation": "Being chased and hurt.\nTired of the same old issues or trying to figure out your own path? Try not going through life with a negative outlook on things. You need to find some common ground, but also acknowledge that you are being put in situations where others may be putting pressure on you. Or it could indicate frustration about something which is \"not right\" for you personally at large.(see Also: The Fate of Your Self). Perhaps there is no way around this situation! Alternatively consider"
+        },
+        {
+            "dream": "Missing a train/bus",
+            "generated_interpretation": "Missing a train/bus. Interpretation: To see or ride a railroad in your dream suggests that you are going through some transitional phase where something new and different is happening around the corner. You need to put up a good fight against what may be lurking within. Alternatively, it indicates an emotional transition from one stage of life into another. Something drastic has occurred which will take place at any given time.\u00a0 The dreams suggest that there is tension between two closely related parts depending on how they relate to"
+        },
+        {
+            "dream": "Meeting a celebrity",
+            "generated_interpretation": "Meeting a celebrity. Or just being around someone in your dream means that you are enjoying their presence and thus can be part of the community there. Alternatively, dreaming about fame may also mean having some sort: how do you feel? You need to acknowledge these people or let them know what they have done for you.\u00a0\nConsider who is famous as well as which one represents success. Consider all aspects relating to yourself if possible. It could indicate prestige; wealth, status etc., depending on where"
+        },
+        {
+            "dream": "Infidelity (partner cheating)",
+            "generated_interpretation": "Infidelity (partner cheating) is a big problem in your dream. You are seeking to be more independent and assertive of others, especially if you have been involved with some financial or physical situation that was previously illegal. If someone else cheated on you, then it indicates an underlying conflict which may never end up occurring again.\u00a0If the person who did this cheat were also married for life , but had children before marrying her husband, then how could she blame them? It implies that they cannot"
+        },
+        {
+            "dream": "Water (floods, drowning)",
+            "generated_interpretation": "Water (floods, drowning) and other water related issues. Interpretation: To see or use a floodgates in your dream represent the flow of life's resources toward higher spiritual enlightenment. You are seeking refuge from negative emotions and situations that may be threatening your well-being. Alternatively you believe that it is all about being \"cleansed off\". The dreams also suggest that there is something missing which will make up for lost energy/energy on an emotional level. In particular if someone"
+        },
+        {
+            "dream": "Pregnancy",
+            "generated_interpretation": "Pregnancy:\nLactating. Interpretation: To dream that you are lactated represents an emotional state of your life which may be hindering or inhibiting progress in some area of your waking situation. You feel as if you have been left behind and cannot relate to the accomplishments, successes etc., that others will make for you. Alternatively it signifies maternal bonding with a baby.\u00a0It is also symbolic about motherhood and how important her presence can be. If there is no milk on hand"
+        },
+        {
+            "dream": "Finding money",
+            "generated_interpretation": "Finding money. Interpretation: To dream that you are getting or keeping a job suggests an abundance of resources and opportunities to help yourself succeed in life.\u00a0 You need to be more self-sufficient, independent with your goals etcetera The dreaming may also mean that there is something lacking for you in order make up the shortfall. Alternatively it means that some situation demands additional attention from others who do not get what they want out on their own. Your personal quest will take care of itself when things go"
+        },
+        {
+            "dream": "Losing money",
+            "generated_interpretation": "Losing money in a stock market is something that you are looking for. It may also mean losing control of your life or keeping things secret from others.\u00a0Alternatively, the loss of some aspect of your identity could be making it difficult to keep track: \"I lost my way\" refers not only to financial decisions but especially about how well-paid and what sort people work on their own projects. You feel trapped by one situation over another . The feeling can manifest itself into violence with little consequences;"
+        },
+        {
+            "dream": "Flying uncontrollably",
+            "generated_interpretation": "Flying uncontrollably.\u00a0You are in an unpredictable situation or you feel that your life is on the verge of going up in flames. You need to take action immediately and get out there! Alternatively, if you do not act quickly enough or refuse a call, then it implies that you have forgotten what happened earlier at work so that others will believe you. Don't let this happen again If someone else gets hurt by something like this, they may be expressing their feelings through words instead (see \"How"
+        },
+        {
+            "dream": "Fire",
+            "generated_interpretation": "Fire: Ball\nTicket. Interpretation: To see or play ball tater tots in your dream represent the aspirations and hopes that you have for yourself as a person. You may be longing for more personal fulfillment, especially if there is an obstacle blocking your progress toward achieving those goals. Alternatively it symbolizes self-improvement; success comes with rewards. Consider also how often these balls are sold out at this time of year so that additional excitement can flow through to you during regular business hours"
+        },
+        {
+            "dream": "Being trapped",
+            "generated_interpretation": "Being trapped in a situation that you are not getting to know or understanding. You feel stuck and unenthusiastic about your current relationship, career or life path. Perhaps the problem is too much emphasis on personal matters!\u00a0Alternatively consider how someone relates with respectability and/or loyalty to their family. Consider who they love: \"The Man\" may be an overly positive name for them. If this person refers back to themselves, then it suggests some sort of emotional connection between two people which"
+        },
+        {
+            "dream": "Walking in a forest",
+            "generated_interpretation": "Walking in a forest. Interpretation: To dream that you are walking through a jungle indicates your need to get rid of some old habits or issues which have been bothering you for the past several years and move on with your life. You will feel more confident, protected from negative influences, and able handle any challenges presented to you by those around yourself. Alternatively it may be symbolic because there is something missing/boring about living within this world.\u00a0You do not know how to behave toward others"
+        },
+        {
+            "dream": "Snakes",
+            "generated_interpretation": "Snakes. Interpretation: To see or eat a certain type of ice cream in your dream symbolizes warmth, comfort and fresh air. It may also indicate that you need to incorporate some aspect into your daily life. Alternatively the Dream is symbolic for sweets.\u00a0 Perhaps it reflects how much stress you are putting on yourself by not eating enough chocolate or jelly. You feel unable to express all aspects within yourself. A couple hours later you wake up feeling overwhelmed. The dreams suggest that something has been knocked"
+        },
+        {
+            "dream": "Spiders",
+            "generated_interpretation": "Spiders. Interpretation: To see a spider in your dream symbolizes control over the environment. You can manipulate or direct what you want from within yourself. Alternatively, spiders represent sexual urges and desires that are not fully expressed by others. Perhaps there is something too much aggression going on inside of you. It may also suggest some sort \"punishment\" for any act which was previously illegal. Consider how long it takes to accomplish this task because even if things go well then someone will be unable get"
+        },
+        {
+            "dream": "Climbing a mountain",
+            "generated_interpretation": "Climbing a mountain in your dream represents some level of emotional stability. You are ready to go on the right path and succeed at whatever you want. Alternatively, dreaming about climbing an imposing hill symbolizes strength, perseverance or courage. The obstacle may be insurmountable but it is worth pursuing for its own sake.\nIf there is no route that will take you up, then how do I know where? If someone else has climbed onto the same thing as you, they represent their accomplishments"
+        },
+        {
+            "dream": "Falling into a hole",
+            "generated_interpretation": "Falling into a hole in your dream means that you are not taking responsibility for the actions that have taken place. You need to take steps toward healing yourself from some past relationship or problem.\u00a0 Alternatively, falling asleep at the computer may be an indication of waking up and seeing things through to completion. If you wake up feeling depressed due: Depression\nActual depression is also symbolic about fearfulness, lack of control over others' lives etc.. Falling off the wagon refers frustration with life's problems and"
+        },
+        {
+            "dream": "Meeting a deceased loved one",
+            "generated_interpretation": "Meeting a deceased loved one in your dream symbolizes hope, spirituality and healing.\u00a0You may be expressing some inner strength or spiritual power that you need to incorporate into your life. Alternatively the dreaming person is symbolic of loss, death-defying circumstances etc . Perhaps they are trying desperately for recognition as someone who has passed away from something serious. In particular, if there is an event which indicates \"Death\" then it refers firmly to those around them. It also represents their achievements/life goals"
+        },
+        {
+            "dream": "Houses",
+            "generated_interpretation": "Houses. Interpretation: To dream that you are on a house represents your emotional stability and independence, especially if it is in the middle of winter. Alternatively to see or live at a home signifies an old relationship where there has been some conflict before but after being let go by someone else. You may be feeling undervalued as well. Consider how much time passes between waking up for work so that no one gets hurt while they wait for their turn. Perhaps this person still dreams about you when he"
+        },
+        {
+            "dream": "Broken objects",
+            "generated_interpretation": "Broken objects. Interpretation: To see or dream that you are stuck in a broken object represents your emotional and physical struggles to get back on track with life. You may be feeling trapped within some situation, even though it is completely unimportant. If the break points toward death then this means that there will never be any progress towards achieving what was promised. The dreams of missing something mean that someone has been hurt by an aspect they have not fully accepted. Alternatively if the breaks point to tears falling"
+        },
+        {
+            "dream": "Being in an empty city",
+            "generated_interpretation": "Being in an empty city is also indicative of your subconscious. You need to be more present and receptive to new experiences or ideas that are coming into your conscious. If you live on the outskirts, then it suggests that there is a lack at home for others. It may indicate some fear of being seen as separate from those around you who have no real relationship with them either way! Perhaps someone else has their own identity which they do not fully grasp yet. Consider how much time was spent outside where this"
+        },
+        {
+            "dream": "Finding hidden rooms",
+            "generated_interpretation": "Finding hidden rooms. Interpretation: To dream that you are in a secret room indicates an unresolved relationship or some aspect of your life which needs to be resolved before it can go on without any consequences. Alternatively, the dreams indicate feelings of insecurity and uncertainty about what is inside. You may feel unable to confront these issues head on. In particular if there are no one around, then this suggests that someone who has been under intense physical attack from above was manipulating you emotionally while trying desperately not let things happen"
+        },
+        {
+            "dream": "Fighting with someone",
+            "generated_interpretation": "Fighting with someone. Interpretation: To dream that you are in a relationship suggests some conflict or struggle within yourself which may be unresolved for too long. You need to move on and take action instead of dwelling on the past. Alternatively, it implies that something is not what its name indicates. The phrase \"I'm marrying your best\" refers earnestness and commitment. If there is an issue about whether you have sex before marriage then perhaps this represents feelings of inadequacy. Consider also how much time has"
+        },
+        {
+            "dream": "Driving a car out of control",
+            "generated_interpretation": "Driving a car out of control is no easy task. You need to take responsibility for your actions and follow through on them with force. The goal here is not just to drive yourself crazy, but also to be as rational and responsible as possible in some situation.\nIn particular if you are driving around screaming at people or being chased by an animal then it points towards the lackadaisical attitude that certain behaviors will eventually lead inevitably into harm. It may stem from subconscious feelings about what someone else"
+        },
+        {
+            "dream": "Hair falling out",
+            "generated_interpretation": "Hair falling out of the window.\u00a0 You feel that you have been cut off from your family or friends. Alternatively, it may be time to put on a show for yourself and make some new acquaintances in this life! If there is an issue with your hair, then perhaps someone has hurt their feelings by trying too hard not being able: \"Please don't do that!\" It will literally mean nothing at all if done right. Don' t forget about old issues like bad luck or losing money"
+        },
+        {
+            "dream": "Being late",
+            "generated_interpretation": "Being late for work? Consider the situation. If you are in a hurry or want to get away from your job, then it may be time that you take advantage of opportunities and prepare yourself ahead of schedule. You will reap what you sow through hard working relationships. Alternatively, if you need to escape some task at home or dream about something else after finishing school (i: \"what is this?\", \"how do I\", etc.), consider how long before taking an action needed by the employer on behalf"
+        },
+        {
+            "dream": "Losing your voice",
+            "generated_interpretation": "Losing your voice in a public hearing is an act of aggression. You are being suppressed and denied the right to speak or have opinions about something that you do not want others to hear.\nIn some situations, it may be time for you Garrison to take over as chair of your own group at work so he can direct all aspects of your life toward his goals. Alternatively speaking up on someone's behalf means expressing yourself more effectively by challenging them instead of confronting their ideas. If there is no one"
+        },
+        {
+            "dream": "Seeing yourself in a mirror",
+            "generated_interpretation": "Seeing yourself in a mirror or dream suggests that you are feeling trapped. You need to put on some facade and hide your true self.\u00a0 Alternatively, the reflection may be telling someone else how they feel about themselves. It is time for an honest look at what really matters: Your own feelings of inadequacy or lack thereof rather than those of others around them*. If there is something wrong with your work relationship which needs fixing, then it indicates guilt over past experiences. The same could be said regarding sex"
+        },
+        {
+            "dream": "Time travel",
+            "generated_interpretation": "Time travel. Interpretation: To dream that you are in a journey indicates your need to get out of the habit and move on with life. You may be longing for some sort or another outlet to express yourself more clearly. Alternatively, it symbolizes an end to something painful or even trivial. Perhaps there is no turning back. It also suggests that someone else has made progress toward their goals and desires. Consider how much time passed between these two thoughts before moving forward? If things were going smoothly but"
+        },
+        {
+            "dream": "Eating food",
+            "generated_interpretation": "Eating food in your dream is analogous to self-image and the subconscious. You are looking for a way of expressing yourself or giving others what they want. If you eat too much, then it suggests that someone else may not appreciate how well you do at something.\u00a0 Alternatively, eating sweets implies guilt about certain decisions you have made over the years. Perhaps there is some aspect missing from your life which makes you feel ashamed or unhappy. The feeling can be overwhelming enough to leave you with no end"
+        },
+        {
+            "dream": "Being underwater",
+            "generated_interpretation": "Being underwater. Interpretation: To dream that you are in the water represents your awareness of life's obstacles and challenges ahead. You need to overcome them before taking action on a decision or situation. It also symbolizes self-discovery and spiritual enlightenment. Alternatively, it indicates wisdom and understanding. Consider where they sit at for additional significance as well!\u00a0 If there is rain falling around you , then this signifies cleansing from some past relationship or lack thereof. The dreaming may be analogous with waking experiences which"
+        },
+        {
+            "dream": "Winning a competition",
+            "generated_interpretation": "Winning a competition. You need to be more open and receptive to new experiences in order for yourself or others around you (or someone else)to succeed at your own goals, dreams etc.. Your dream may also be telling of some social problem that needs solving right now!\u00a0 Alternatively the DreamMaker is an example of how something from memory can help make sense of things instead: \"Wait!\" This means no changes are needed immediately after finishing what's on the table. If there are any minor issues"
+        },
+        {
+            "dream": "Failing to communicate",
+            "generated_interpretation": "Failing to communicate with others in your dream suggests that you are not giving enough attention to what is going on around them. Perhaps it's time for a new approach and/or an open mind.\u00a0If the dreams reveal feelings of guilt, shame or fear, then they may be indicative rather than direct evidence of some wrongdoing occurring at work or home . It also indicates ignorance about something; perhaps there is too much negativity surrounding things. Alternatively this attitude could indicate hopelessness which can lead inevitably towards depression"
+        },
+        {
+            "dream": "Being attacked by animals",
+            "generated_interpretation": "Being attacked by animals in your dream suggests that you are being overwhelmed and/or unable to accomplish what is needed. The animal may be trying desperately for its attention or resources, instead of acknowledging it. Alternatively the situation could simply be a metaphor about \"dogs\" who need to be protected from aggression. Perhaps there is some sort: You cannot control yourself physically enough; perhaps someone else has taken over as their boss?\u00a0 In particular, if an elephant bites on you at work, then this represents frustration"
+        },
+        {
+            "dream": "Children playing",
+            "generated_interpretation": "Children playing in a park. Interpretation: To dream that you are at a campground indicates your need to take advantage of the opportunities presented by nature and nurture yourself toward greater things. You may also be trying too hard not knowing what it is all about.\u00a0Consider other aspects such as where or how much water there is inside, if any. Alternatively this dreaming means that someone needs help dealing with their issues within themselves. It signifies spiritual renewal/rebirth. Something important has been done for some"
+        },
+        {
+            "dream": "A bright light",
+            "generated_interpretation": "A bright light\nconversion. Interpretation: To dream that you are a victim of an evil influence indicates your need for self-protection and protection from negative influences in your life. You may be being too trusting or unwilling to confront some issues with authority figures within your own circles, especially if there is something sinister about the person who it represents.\u00a0 Alternatively , dreaming of someone holding onto your power means that they will not let up until things get out of hand. If this character does not like"
+        },
+        {
+            "dream": "A dark tunnel",
+            "generated_interpretation": "A dark tunnel. Interpretation: To see a darkness-tunnel in your dream symbolizes fear and uncertainty. You are feeling confined, limited or restricted by circumstances beyond your control. Alternatively the metaphor suggests that you need to be more vigilant about what is happening around you. It may also mean that there is something sinister going on inside of you. Something strange will occur when it comes to life.\u00a0Alternatively if someone who has been at this light tunnel for over ten years refers back to an old"
+        },
+        {
+            "dream": "An endless staircase",
+            "generated_interpretation": "An endless staircase. The stairway is a metaphor for life's journey and your desire to escape from the daily responsibilities of being in control or doing things on your own. Alternatively, it means that you need to learn how not only do what you want but also behave as if everything was going smoothly enough. It may indicate frustration with some aspect causing issues within yourself. If there is an issue where something seems completely out-of: controllable, then perhaps this problem represents unresolved anger about one thing"
+        },
+        {
+            "dream": "Losing a limb",
+            "generated_interpretation": "Losing a limb in your dream symbolizes the struggle to overcome life's obstacles. You are trying hard to regain some lost freedom or self-image. Alternatively, losing a hand represents knowledge and insight that you need to incorporate into your own daily activities. Perhaps it is time for meditation? Consider also how someone else relates their feelings toward you. It may be analogous with being cut off from family members due: separation anxiety , loss of loved ones, etc., especially if they have been killed by an"
+        },
+        {
+            "dream": "Aliens or UFOs",
+            "generated_interpretation": "Aliens or UFOs?\nIt is a given that there are some strange and/or paranormal experiences occurring in your dream. You need to be more careful about what you report on the internet, especially if it refers back directly into yourself. It may also mean that something \"seems\" off for certain people who have experienced UFO activity before their own eyes! Perhaps this information was taken from someone else's subconscious so they can better appreciate its significance when presented to them by an actual person with whom they"
+        },
+        {
+            "dream": "Breaking glass",
+            "generated_interpretation": "Breaking glass. Interpretation: To see or dream that you are looking for something in glass indicates your need to be more assertive and forceful with others. Alternatively, the dream represents a situation where some aspect of your life is at stake. It may also represent someone who has lost their way because they have not been able \"solo\". You feel unable communicate effectively through words or actions. Consider what type glasses were used on which person before making an opinion about it. If there is no reflection from"
+        },
+        {
+            "dream": "Fires consuming surroundings",
+            "generated_interpretation": "Fires consuming surroundings. Interpretation: To see a fire in your dream represents some aspect of yourself that you are keeping hidden or hiding from the outside world.\u00a0 You need to show more humility and self-confidence, especially if it is directed toward others. Alternatively someone may be trying too hard not knowing how to behave towards them. If there is no one around, then this symbolizes an obstacle blocking progress for everyone else on their journey. Consider also what type blaze refers into your life; do"
+        },
+        {
+            "dream": "Wearing strange clothes",
+            "generated_interpretation": "Wearing strange clothes is not a bad thing. It may also be indicative of your subconscious fears about certain things that are out of control or threatening to happen in your waking life. You need to take responsibility for the choices you make and what consequences will result from those decisions. If someone's wearing silly, white clothing, then it indicates how insecure they feel within yourself. The person who wears fancy shopping attire cannot always work themselves up over something like this. In particular if there are no colors on their"
+        },
+        {
+            "dream": "Meeting a shadowy figure",
+            "generated_interpretation": "Meeting a shadowy figure in your dream represents some sort of emotional struggle or transition. Perhaps you need to confront these issues head on and find out what is really going through your mind at the time, especially if it's someone else. If there is no one present who can attend the meeting, then how do you know that person? Alternatively perhaps this strange situation has something to do with her/himself. You feel like they are being impersonal\u00a0or \"putting\" you down instead Of"
+        },
+        {
+            "dream": "Being unable to wake up",
+            "generated_interpretation": "Being unable to wake up and dream that you are asleep indicates a lack of self-esteem or your ability. You need to put aside any inhibitions about waking life and let go of some personal issues.\u00a0 Alternatively, dreaming suggests that there is something in your subconscious which may not be known by the outside world: for example dreams indicate an inability with confidence or sense of purpose. Perhaps someone else inside has made this choice because they feel like it would make them look bad on their own image. It"
+        }
+    ]
+}

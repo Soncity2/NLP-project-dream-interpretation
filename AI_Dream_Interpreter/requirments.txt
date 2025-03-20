@@ -5,16 +5,25 @@ torchvision>=0.16.2+cu121
 torchaudio>=2.1.2+cu121
 
 # Hugging Face Libraries
-transformers>=4.38.1
+transformers>=4.37.0
 datasets>=2.18.0
 peft>=0.9.0
 accelerate>=0.26.0
+
+# Evaluation & Metrics
+evaluate>=0.4.1  # Hugging Face evaluate library (BLEU, ROUGE, Perplexity, BERTScore)
+bert-score>=0.3.13  # Required for BERTScore metric
+scipy>=1.11.4  # Required for metric calculations
 
 # Tokenization & Processing
 sentencepiece>=0.1.99
 protobuf>=3.20.3
 pyyaml>=6.0.1
 tqdm>=4.66.2
+nltk>=3.8.1  # Required for tokenizing BLEU metric
 
-# PDF Processing
-pypdf2>=3.0.1
+# LangChain & Dependencies
+langchain
+langchain_community
+pypdf
+openai>=1.0.0
