@@ -1,0 +1,49 @@
+{
+    "model": "T5",
+    "SacreBLEU": 0.2509444863883913,
+    "ROUGE-L": 0.04009557945041815,
+    "BERTScore-F1": 0.8237908840179443,
+    "Perplexity": null,
+    "samples": [
+        {
+            "dream": "Falling",
+            "generated": "To dream that you are falling represents a lack of self-esteem. You are being deprived of your own personal qualities."
+        },
+        {
+            "dream": "Being naked in public",
+            "generated": "To dream that you are naked in public indicates that you are hiding something or doing something. You may be hiding something or hiding something."
+        },
+        {
+            "dream": "Flying",
+            "generated": "To see a flying bird in your dream represents the beauty of the sky. It also represents the awe of the world. Alternatively, it represents the beauty of the sky."
+        },
+        {
+            "dream": "Teeth falling out",
+            "generated": "To see teeth falling out in your dream symbolizes your desire to be able to express your feelings. You need to express your feelings in a positive way."
+        },
+        {
+            "dream": "Death",
+            "generated": "To dream that you are in death indicates that you are unable to complete your task. You are not able to complete your tasks."
+        },
+        {
+            "dream": "Exams or tests",
+            "generated": "To dream that you are undergoing exams or tests indicates that you are looking for a solution. You want to get back on track."
+        },
+        {
+            "dream": "Being chased",
+            "generated": "To dream that you are being chased signifies your unresolved problems. Alternatively, the dream indicates that you are being chased or that you are being chased."
+        },
+        {
+            "dream": "Missing a train/bus",
+            "generated": "To dream of missing a train/bus signifies the loss of a relationship, friendship, or relationship. The dream also refers to your inability to communicate effectively."
+        },
+        {
+            "dream": "Meeting a celebrity",
+            "generated": "To dream that you are meeting a celebrity signifies a relationship in which you are being drawn into a relationship. You are coming out on top. You are trying to reach out and connect with others."
+        },
+        {
+            "dream": "Infidelity (partner cheating)",
+            "generated": "To dream that you are infidelity refers to your desire to be more honest and honest with yourself. Alternatively, the dream means that you are trying to avoid a situation."
+        }
+    ]
+}

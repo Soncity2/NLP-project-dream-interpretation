@@ -2,18 +2,20 @@ import yaml
 import logging
 import pandas as pd
 import torch
-from transformers import T5ForConditionalGeneration, T5Tokenizer, Trainer, TrainingArguments
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, Trainer, TrainingArguments, DataCollatorForSeq2Seq
 from datasets import Dataset
 from pathlib import Path
 
 
 logging.basicConfig(level=logging.INFO)
+DATASET_DIR = Path("../data/raw_pdfs")
 PROCESSED_DIR = Path("../data/processed")
-DATASET_FILE = PROCESSED_DIR / "dreams_interpretations.csv"
-CONFIG_PATH = Path("../AI_Dream_Interpreter/config/t5_training_config.yaml")
+#DATASET_FILE = PROCESSED_DIR / "dreams_interpretations.csv"
+DATASET_FILE = DATASET_DIR / "dreams_interpretations.csv"
+CONFIG_PATH = Path("../config/t5_training_config.yaml")
 
-tokenizer = T5Tokenizer.from_pretrained("t5-small")
-model = T5ForConditionalGeneration.from_pretrained("t5-small")
+tokenizer = AutoTokenizer.from_pretrained("google-t5/t5-base")
+model = AutoModelForSeq2SeqLM.from_pretrained("google-t5/t5-base")
 
 def load_training_config():
     with open(CONFIG_PATH, "r") as f:
@@ -23,40 +25,48 @@ def load_dataset(file_path):
     df = pd.read_csv(file_path)
     if not all(col in df.columns for col in ["Dream", "Interpretation"]):
         raise ValueError("CSV must contain 'Dream' and 'Interpretation' columns.")
-    df["input_text"] = "interpret dream: " + df["Dream"]
-    df["target_text"] = df["Interpretation"]
-    dataset = Dataset.from_pandas(df[["input_text", "target_text"]])
-    return dataset.map(
-        lambda x: {
-            "input_ids": tokenizer(x["input_text"], truncation=True, max_length=512, padding="max_length")["input_ids"],
-            "labels": tokenizer(x["target_text"], truncation=True, max_length=512, padding="max_length")["input_ids"]
-        },
-        batched=True
-    )
+
+    df["input"] = df["Dream"].apply(lambda x: f"interpret dream: {x}")
+    df["target"] = df["Interpretation"]
+
+    dataset = Dataset.from_pandas(df[["input", "target"]])
+
+    def tokenize(example):
+        model_inputs = tokenizer(example["input"], max_length=512, truncation=True, padding="max_length")
+        with tokenizer.as_target_tokenizer():
+            labels = tokenizer(example["target"], max_length=128, truncation=True, padding="max_length")
+        model_inputs["labels"] = labels["input_ids"]
+        return model_inputs
+
+    return dataset.map(tokenize, batched=True)
 
 def fine_tune_t5():
     config = load_training_config()
     dataset = load_dataset(DATASET_FILE)
     split_dataset = dataset.train_test_split(test_size=0.1)
+    data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
     training_args = TrainingArguments(
-        output_dir="../models/fine_tuned_t5",
-        per_device_train_batch_size=4,
-        per_device_eval_batch_size=4,
-        num_train_epochs=5,
-        learning_rate=5e-5,
-        weight_decay=0.01,
-        logging_steps=50,
-        save_total_limit=2,
-        evaluation_strategy="epoch",
+        output_dir=config["output_dir"],
+        per_device_train_batch_size=config["per_device_train_batch_size"],
+        per_device_eval_batch_size=config["per_device_eval_batch_size"],
+        num_train_epochs=config["num_train_epochs"],
+        learning_rate=float(config["learning_rate"]),
+        weight_decay=float(config["weight_decay"]),
+        logging_steps=config["logging_steps"],
+        evaluation_strategy=config["evaluation_strategy"],
+        save_total_limit=config["save_total_limit"],
+        max_grad_norm=config["max_grad_norm"],
         fp16=torch.cuda.is_available(),
-        logging_dir="../logs/t5"
+        logging_dir=config["log_dir"],
+        report_to="tensorboard"
     )
     trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=split_dataset["train"],
         eval_dataset=split_dataset["test"],
-        tokenizer=tokenizer
+        tokenizer=tokenizer,
+        data_collator=data_collator
     )
     trainer.train()
     model.save_pretrained("../models/fine_tuned_t5")

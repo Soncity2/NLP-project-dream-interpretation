@@ -8,8 +8,10 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 CONFIG_PATH = Path("../config/gpt2_training_config.yaml")
+DATASET_DIR = Path("../data/raw_pdfs")
 PROCESSED_DIR = Path("../data/processed")
-DATASET_FILE = PROCESSED_DIR / "dreams_interpretations.csv"
+#DATASET_FILE = PROCESSED_DIR / "dreams_interpretations.csv"
+DATASET_FILE = DATASET_DIR / "dreams_interpretations.csv"
 
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
 tokenizer.pad_token = tokenizer.eos_token
@@ -39,15 +41,15 @@ def fine_tune():
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
     training_args = TrainingArguments(
         output_dir=config["output_dir"],
-        per_device_train_batch_size=4,
-        per_device_eval_batch_size=4,
-        num_train_epochs=5,
-        learning_rate=5e-5,
-        max_grad_norm=1.0,
-        weight_decay=0.01,
-        logging_steps=50,
-        save_total_limit=2,
-        evaluation_strategy="epoch",
+        per_device_train_batch_size=config["per_device_train_batch_size"],
+        per_device_eval_batch_size=config["per_device_eval_batch_size"],
+        num_train_epochs=config["num_train_epochs"],
+        learning_rate=float(config["learning_rate"]),
+        weight_decay=float(config["weight_decay"]),
+        logging_steps=config["logging_steps"],
+        evaluation_strategy=config["evaluation_strategy"],
+        save_total_limit=config["save_total_limit"],
+        max_grad_norm=config["max_grad_norm"],
         fp16=torch.cuda.is_available(),
         logging_dir=config["log_dir"],
         report_to="tensorboard"

@@ -8,8 +8,10 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 CONFIG_PATH = Path("../config/bart_training_config.yaml")  # create a new config if desired
+DATASET_DIR = Path("../data/raw_pdfs")
 PROCESSED_DIR = Path("../data/processed")
-DATASET_FILE = PROCESSED_DIR / "dreams_interpretations.csv"
+#DATASET_FILE = PROCESSED_DIR / "dreams_interpretations.csv"
+DATASET_FILE = DATASET_DIR / "dreams_interpretations.csv"
 
 tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
 model = BartForConditionalGeneration.from_pretrained("facebook/bart-base")
