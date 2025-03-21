@@ -1,0 +1,49 @@
+{
+    "model": "T5",
+    "SacreBLEU": 0.21519322043164735,
+    "ROUGE-L": 0.021850079744816585,
+    "BERTScore-F1": 0.8250944495201111,
+    "Perplexity": null,
+    "samples": [
+        {
+            "dream": "Falling",
+            "generated": "To dream that you are falling signifies your vulnerability and vulnerability. It may be a sign that you are feeling lost."
+        },
+        {
+            "dream": "Being naked in public",
+            "generated": "To dream that you are naked in public indicates that you need to be more conscious and less repressed. You need to be more assertive and assertive in your actions."
+        },
+        {
+            "dream": "Flying",
+            "generated": "To see a flying sign in your dream refers to your inner inner fire. The dream may be a metaphor for your inner fire."
+        },
+        {
+            "dream": "Teeth falling out",
+            "generated": "To dream that you have teeth falling out indicates that you are being too repressed. Alternatively, the dream may be about a lack of confidence in yourself. The dream may also be a metaphor for a lack of a sense of self-confidence."
+        },
+        {
+            "dream": "Death",
+            "generated": "To dream that you are dead indicates that you are depressed, depressed or unable to cope with anything. The dream may also be a metaphor for your own death."
+        },
+        {
+            "dream": "Exams or tests",
+            "generated": "To dream that you are passing exams or tests represents your inability to make a decision. You are not confident in your decision. You are not able to make a decision."
+        },
+        {
+            "dream": "Being chased",
+            "generated": "To dream that you are being chased indicates that you need to be more cautious about how you react to your surroundings. If you are being chased, then it suggests that you need to be more cautious and cautious."
+        },
+        {
+            "dream": "Missing a train/bus",
+            "generated": "To see a train or bus in your dream symbolizes missing a train/bus or even a bus. You are missing some train or bus."
+        },
+        {
+            "dream": "Meeting a celebrity",
+            "generated": "To see a celebrity in your dream represents your innermost desires. It may also mean that you need to be more self-aware and self-sufficient. You need to take control of your life and the way you feel."
+        },
+        {
+            "dream": "Infidelity (partner cheating)",
+            "generated": "To dream that you are cheating on someone implies that you need to be more serious about your relationship. You need to be more aggressive about defending yourself."
+        }
+    ]
+}

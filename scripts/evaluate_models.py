@@ -57,7 +57,7 @@ def generate_text(model, tokenizer, prompt, max_length=512, is_t5=False):
     return generated.strip()
 
 def evaluate_models(model_dir, model_name, is_bart=False, is_t5=False):
-    eval_results_file = PROCESSED_DIR / f"results/evaluation_{model_name.lower()}.json"
+    eval_results_file = Path(f"../results/evaluation_{model_name.lower()}.json")
     if is_t5:
         tokenizer = T5Tokenizer.from_pretrained(model_dir)
         model = T5ForConditionalGeneration.from_pretrained(model_dir)
