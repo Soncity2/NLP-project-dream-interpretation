@@ -50,7 +50,7 @@ ai-dream-interpreter/
 │   ├── dataset_preparation.py      # Prepare dataset from processed text
 │   ├── tokenize_dataset.py         # Tokenize text dataset
 │   ├── fine_tune_gpt2.py           # Fine-tune GPT-2 on dream data
-│   ├── fine_tune_bart.py           # Fine-tune BART on dream data
+│   ├── fine_tune_t5.py           # Fine-tune T5 on dream data
 │   ├── evaluate_models.py          # Evaluate and compare models
 │── logs/                          
 │── requirements.txt               
