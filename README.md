@@ -4,12 +4,12 @@
 ---
 
 ## 🌟 Overview  
-This project fine-tunes two different language models – **GPT‑2** (a decoder‑only model) and **BART** (an encoder–decoder model) – using dream interpretation texts extracted from PDFs. Both models are trained on structured dream data, and you can later compare their interpretation outputs to explore how different architectures affect the results.
+This project fine-tunes two different language models – **GPT‑2** (a decoder‑only model) and **T5** (an encoder–decoder model) – using dream interpretation texts extracted from PDFs. Both models are trained on structured dream data, and you can later compare their interpretation outputs to explore how different architectures affect the results.
 
 ### Pipeline  
 - ✅ Extract text from PDFs 📄  
 - ✅ Preprocess & tokenize the dataset 🛠️  
-- ✅ Fine-tune GPT‑2 and BART on dream-related data 🧠  
+- ✅ Fine-tune GPT‑2 and T5 on dream-related data 🧠  
 - ✅ Evaluate and compare model performance 📊
 
 ---
@@ -18,8 +18,8 @@ This project fine-tunes two different language models – **GPT‑2** (a decoder
 
 ### 1️⃣ Clone the Repository  
 ```sh
-git clone https://github.com/AvivSalomon/ai-dream-interpreter.git
-cd ai-dream-interpreter
+git clone https://github.com/Soncity2/NLP-project-dream-interpretation.git
+cd NLP-project-dream-interpretation
 ```
 
 ### **2️⃣ Create a Virtual Environment (Optional but Recommended)**
@@ -40,16 +40,16 @@ ___
 ai-dream-interpreter/
 │── config/                     
 │   ├── gpt2_training_config.yaml       # Training hyperparameters for GPT-2
-│   ├── bart_training_config.yaml       # Training hyperparameters for BART
+│   ├── t5_training_config.yaml       # Training hyperparameters for T5
 │── data/                         
 │   ├── raw_pdfs/                  # PDF files for fine-tuning
 │   ├── processed/                 # Extracted & processed text & CSVs
-│── models/                        # Trained models (e.g., fine_tuned_gpt2, fine_tuned_bart)
+│── models/                        # Trained models (e.g., fine_tuned_gpt2, fine_tuned_t5)
 │── scripts/                      
 │   ├── pdf_processing.py           # Extract text from PDFs
 │   ├── dataset_preparation.py      # Prepare dataset from processed text
 │   ├── tokenize_dataset.py         # Tokenize text dataset
-│   ├── fine_tune.py                # Fine-tune GPT-2 on dream data
+│   ├── fine_tune_gpt2.py           # Fine-tune GPT-2 on dream data
 │   ├── fine_tune_bart.py           # Fine-tune BART on dream data
 │   ├── evaluate_models.py          # Evaluate and compare models
 │── logs/                          
@@ -66,31 +66,31 @@ Place your PDF files in data/raw_pdfs/ and run:
 
 ```sh
 python scripts/pdf_processing.py
-Output: Extracted text stored in data/processed/ as .json files.
+Output: Extracted text stored in data/processed/ as .txt files.
 ```
 
 
 🛠 2️⃣ Prepare Dataset for Training
 ```sh
 python scripts/dataset_preparation.py
-Output: A structured dataset in data/processed/dataset.json.
+Output: A structured dataset in data/processed/dataset.txt.
 ```
 🔢 3️⃣ Tokenize the Dataset
 ```sh
 python scripts/tokenize_dataset.py
 Output: Tokenized dataset stored in data/processed/tokenized_dataset/.
 ```
-🎓 4️⃣ Fine-Tune the Models on Dream Data
+🎓 3️⃣ Fine-Tune the Models on Dream Data
 ```sh
 python scripts/fine_tune_gpt2.py
 Output: Fine-tuned model saved in models/fine_tuned_gpt2/.
 ```
 ```sh
-python scripts/fine_tune_bart.py
-Output: Fine-tuned BART model is saved in models/fine_tuned_bart/.
+python scripts/fine_tune_t5.py
+Output: Fine-tuned BART model is saved in models/fine_tuned_t5/.
 
 ```
-📊 5️⃣ Evaluate the Fine-Tuned Model
+📊 4️⃣ Evaluate the Fine-Tuned Model
 ```sh
 python scripts/evaluate_models.py
 Output: Evaluation results saved in data/processed/evaluation_results.json.
@@ -98,7 +98,7 @@ Output: Evaluation results saved in data/processed/evaluation_results.json.
 ___
 ### 🛠 Customization & Configuration
 Modify hyperparameters in config/gpt2_training_config.yaml before fine-tuning.
-and config/bart_training_config.yaml
+and config/t5_training_config.yaml
 
 Example:
 ```

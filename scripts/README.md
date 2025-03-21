@@ -1,54 +1,58 @@
-# **Processed Files in LLaMA 2 Fine-Tuning Pipeline**
+# **Processed Files in GPT-2 & T5 Fine-Tuning Pipeline**
 
 ## **📌 Introduction**
-In this presentation, we will explore the processed files generated in the LLaMA 2 fine-tuning pipeline. These files play a crucial role in training, evaluation, and deployment of the model.
+In this presentation, we will explore the processed files generated in the GPT-2 & T5 fine-tuning pipeline. These files play a crucial role in training, evaluation, and deployment of the model.
 
 ---
 
 ## **🔹 Overview of the Pipeline**
-1. **Raw Data** (PDFs, Text, etc.) → Extracted using `pdf_processing.py`
-2. **Dataset Preparation** → Processed into `dataset.txt`
-3. **Tokenization** → `tokenized_dataset/` created using `tokenize_dataset.py`
-4. **Fine-Tuning** → Model is trained and saved in `models/`
-5. **Evaluation** → Evaluated model performance with `evaluate.py`
+1. **Raw Data** (PDFs, Text, etc.) → Extracted using `pdf_processing.py` into `dreams_freudian_structure.txt`
+2. **Dataset Preparation** → Processed into `dream_interpretations.csv`
+4. **Fine-Tuning** → Model is trained with processed and raw datasets and saved in `models/`
+5. **Evaluation** → Evaluated model performance with `evaluate_models.py`
 
 ---
 
 ## **📂 Detailed Explanation of Processed Files**
 
-### **1️⃣ `dataset.txt`**
-- 📍 **Location**: `data/processed/dataset.txt`
-- 📄 **Content**: Cleaned and formatted text extracted from PDFs or other sources.
+### **1️⃣ `dreams_freudian_structure.txt`**
+- 📍 **Location**: `data/processed/`
+- 📄 **Content**: Cleaned and formatted text extracted from PDFs using ChatGPT-4. Created from Claude 200 common dreams in psychology.
 - 📌 **Purpose**: Acts as the training dataset before tokenization.
 
 ✅ **Example Content:**
 ```plaintext
-"Dreams are a window into the subconscious."
-"Freud's interpretation of dreams revolutionized psychology."
+    Running but getting nowhere : Indicates avoidance of an unresolved fear, repressed guilt, or internal conflict.
+    Paralysis/inability to move : Reflects feelings of helplessness, repression, or unconscious anxiety about control.
 ```
 
 ---
 
-### **2️⃣ `tokenized_dataset/`**
-- 📍 **Location**: `data/processed/tokenized_dataset/`
-- 📄 **Content**: Hugging Face Dataset files (binary format) containing tokenized text.
-- 📌 **Purpose**: Stores text converted into token IDs, which are used for training the LLaMA 2 model.
+### **2️⃣ `dreams_interpretations.csv`**
+- 📍 **Location**: `data/processed/`, `data/raw_pdfs/`
+- 📄 **Content**: Processed txt file to csv and raw csv with dreams and their interpretations
+- 📌 **Purpose**: Datasets that are used for training the 2 models. One Kaggle Dataset and One Processed from PDF.
 
-✅ **Files Inside `tokenized_dataset/`**
-- `data-00000-of-00001.arrow` → Stores tokenized text in Apache Arrow format.
-- `dataset_info.json` → Metadata about the dataset.
-- `state.json` → Tracks processing status.
 
-✅ **Example Tokenized Output:**
-```json
-{"text": "Dreams are a window into the subconscious.", "input_ids": [342, 654, 1234, ...], "attention_mask": [1, 1, 1, ...]}
+✅ **Examples Tokenized Output:**
+```csv
+Dream,Interpretation
+Falling through space,"Symbolizes a loss of control, insecurity, or fear of failure, often linked to anxiety and repressed fears."
+Flying effortlessly,"Represents a desire for freedom, escape from constraints, or unconscious sexual excitement."
+```
+
+```csv
+Dream,Interpretation
+"Barbie Doll","To see a Barbie doll in your dream represents society's ideals.  You may feel that you are unable to meet the expectations of others.  Alternatively, the Barbie doll refers to the desire to escape from daily responsibilities. It may serve to bring you back to your childhood where life was much simpler and more carefree."
+Barcode,"To see a barcode in your dream symbolizes automation, simplification and ease. Alternatively, the dream represents an impersonal relationship in your waking  life. You are feeling alienated."
+
 ```
 
 ---
 
 ### **3️⃣ `models/` (Fine-Tuned Model Output)**
-- 📍 **Location**: `models/fine_tuned_llama2/`
-- 📄 **Content**: Trained LLaMA 2 model weights and tokenizer.
+- 📍 **Location**: `models/fine_tuned_gpt2/`, `models/fine_tuned_t5/`
+- 📄 **Content**: Trained 2 model weights and tokenizers.
 - 📌 **Purpose**: Stores the fine-tuned model for later use.
 
 ✅ **Files Inside `models/`**
@@ -56,38 +60,5 @@ In this presentation, we will explore the processed files generated in the LLaMA
 - `config.json` → Model configuration
 - `tokenizer.json` → Tokenizer settings
 - `special_tokens_map.json` → Defines special tokens (e.g., `<PAD>`)
-
----
-
-## **📊 Data Flow in Fine-Tuning**
-```plaintext
-Raw PDFs → dataset.txt → tokenized_dataset/ → Fine-Tuned Model (models/)
-```
-
----
-
-## **🛠 Managing Processed Files in Git**
-
-### **Why Aren’t Processed Files Automatically Tracked?**
-1. **They might be in `.gitignore`** → Check & remove exclusions.
-2. **Files are too large** → Use `Git LFS` for large model weights.
-3. **Some files are dynamically generated** → Avoid pushing temporary files.
-
-### **How to Track Processed Files?**
-```bash
-git add -f data/processed/dataset.txt
-git add -f data/processed/tokenized_dataset/*
-git add -f models/*
-git commit -m "Adding processed files"
-git push origin main
-```
-
-For large files:
-```bash
-git lfs track "models/*"
-git add .gitattributes
-git commit -m "Using Git LFS for large files"
-git push origin main
-```
 
 ---
