@@ -1,5 +1,5 @@
 # **AI Dream Interpreter** 🌙💭✨  
-**Fine-tune GPT‑2 and BART to interpret dreams based on structured text from PDFs.**
+**Fine-tune GPT‑2 and T5 to interpret dreams based on structured text from PDFs.**
 
 ---
 
