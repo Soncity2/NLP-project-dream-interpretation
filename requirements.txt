@@ -1,19 +1,29 @@
-# For model fine-tuning and working with LLaMA 2 and Bloom
-transformers<=4.32.0          # For handling model architectures and training
-datasets<=2.10.0              # For loading and processing datasets
-accelerate<=0.21.0            # For distributed training and hardware acceleration
-torch<=2.1.0                  # Required for LLaMA, Bloom fine-tuning
+# Install PyTorch with CUDA 12.1 (Closest Officially Supported Version)
+--index-url https://download.pytorch.org/whl/cu121
+torch>=2.1.2+cu121
+torchvision>=0.16.2+cu121
+torchaudio>=2.1.2+cu121
 
-numpy<=1.24.2
-pandas<=1.5.0
-matplotlib<=3.8.2
-seaborn<=0.13.0
-scikit-learn<=1.2.1
+# Hugging Face Libraries
+transformers>=4.37.0
+datasets>=2.18.0
+peft>=0.9.0
+accelerate>=0.26.0
 
-# For evaluation metrics (if needed)
-rouge_score<=0.1.0            # For ROUGE score evaluation
-sacrebleu<=2.3.1              # For BLEU score evaluation
-bert-score<=0.3.13            # For BERTScore evaluation
+# Evaluation & Metrics
+evaluate>=0.4.1  # Hugging Face evaluate library (BLEU, ROUGE, Perplexity, BERTScore)
+bert-score>=0.3.13  # Required for BERTScore metric
+scipy>=1.11.4  # Required for metric calculations
 
-# For progress bars in loops (optional)
-tqdm<=4.66.1                  # For progress bars during training
+# Tokenization & Processing
+sentencepiece>=0.1.99
+protobuf>=3.20.3
+pyyaml>=6.0.1
+tqdm>=4.66.2
+nltk>=3.8.1  # Required for tokenizing BLEU metric
+
+# LangChain & Dependencies
+langchain
+langchain_community
+pypdf
+openai>=1.0.0
