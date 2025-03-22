@@ -12,3 +12,4 @@ logging_steps: 50
 learning_rate: 5e-5
 weight_decay: 0.01
 warmup_steps: 100
+max_grad_norm: 1.0
