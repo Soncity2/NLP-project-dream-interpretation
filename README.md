@@ -14,7 +14,7 @@ This project fine-tunes two different language models – **GPT‑2** (a decoder
 
 ---
 
-## 🚀 Setup Guide
+## 🚀 Setup Guide (Python 3.10)
 
 ### 1️⃣ Clone the Repository  
 ```sh
@@ -31,9 +31,6 @@ source venv_dream/bin/activate  # On Windows use: venv\Scripts\activate
 ```sh
 pip install -r requirements.txt
 ```
-```sh
-pip install -e .
-````
 ___
 ## 📂 Project Structure
 ```
