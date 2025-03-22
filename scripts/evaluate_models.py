@@ -4,7 +4,7 @@ from pathlib import Path
 from transformers import AutoModelForCausalLM, BartForConditionalGeneration, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
 import evaluate
 import logging
-from utility import format_model_name
+from utility import format_model_name, write_dream_analysis_to_csv
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 # Directories for the fine-tuned models
@@ -87,6 +87,13 @@ def evaluate_models(model_dir, model_name, is_bart=False, is_t5=False):
     eval_results_file.parent.mkdir(exist_ok=True)
     with open(eval_results_file, "w") as f:
         json.dump(results, f, indent=4)
+
+    # Load the JSON file from disk
+    with open(eval_results_file, 'r', encoding='utf-8') as f:
+        dream_json_data = json.load(f)
+
+    write_dream_analysis_to_csv(dream_json_data,metrics_filename=Path(f"../results/model_metrics_{model_name}.csv"),
+                                samples_filename=Path(f"../results/interpretation_results_{model_name}.csv"))
     return results
 
 def compare_models():
