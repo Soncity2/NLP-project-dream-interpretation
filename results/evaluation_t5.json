@@ -1,0 +1,49 @@
+{
+    "model": "T5",
+    "SacreBLEU": 0.20288364735254694,
+    "ROUGE-L": 0.049463897471755114,
+    "BERTScore-F1": 0.8307102024555206,
+    "Perplexity": null,
+    "samples": [
+        {
+            "dream": "Falling",
+            "generated": "To dream that you are falling represents your desire to be more open and to feel more at home in your own life. You want to be more in control of your life."
+        },
+        {
+            "dream": "Being naked in public",
+            "generated": "To dream that you are naked indicates that you are being abused or abused by others and being abused by others. Alternatively, dreaming of nakedness suggests that you are being sexually abused or abused."
+        },
+        {
+            "dream": "Flying",
+            "generated": "To dream that you are flying represents your ability to travel in a different direction. You are capable of taking on different situations in your life."
+        },
+        {
+            "dream": "Teeth falling out",
+            "generated": "To see teeth falling out in your dream represents your inner turmoil. You are trying to protect yourself from being held captive."
+        },
+        {
+            "dream": "Death",
+            "generated": "To dream that you are in death indicates that you are unable to find your place in the world. Alternatively, death symbolizes a certain aspect of yourself."
+        },
+        {
+            "dream": "Exams or tests",
+            "generated": "To dream that you are taking exams or tests suggests that you need to be more specific in your thinking about what you are doing. Alternatively, if you are taking tests or exams, then you need to be more specific and precise. Alternatively, the dream implies that you are being more specific in your thinking and behavior."
+        },
+        {
+            "dream": "Being chased",
+            "generated": "To dream that you are being chased indicates that you are feeling a little apathetic towards others. If you are chased, then it means that you need to get out of your comfort zone and out of your way."
+        },
+        {
+            "dream": "Missing a train/bus",
+            "generated": "To dream that you are missing a train/bus signifies the confusion and confusion that you are having in your own life. You are experiencing difficulties with a situation or situation that you are not aware of."
+        },
+        {
+            "dream": "Meeting a celebrity",
+            "generated": "To meet a celebrity in your dream signifies your desire to be a part of something big. You are seeking to impress and impress."
+        },
+        {
+            "dream": "Infidelity (partner cheating)",
+            "generated": "To dream that you are cheating on someone implies that you are being dishonest or ludicrous. You are trying to sabotage your relationships. Alternatively, the dream suggests that you are a victim of some kind of infidelity. You are being \"cheated\" or \"cheated\" by someone."
+        }
+    ]
+}

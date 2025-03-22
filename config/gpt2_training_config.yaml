@@ -1,0 +1,14 @@
+model_name: "openai-community/gpt2"
+output_dir: "../models/fine_tuned_gpt2"
+log_dir: "../logs"
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 4
+num_train_epochs: 5
+save_total_limit: 2
+save_strategy: "epoch"
+evaluation_strategy: "epoch"
+logging_dir: "logs"
+logging_steps: 50
+learning_rate: 5e-5
+weight_decay: 0.01
+warmup_steps: 100
