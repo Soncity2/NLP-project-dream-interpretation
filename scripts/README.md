@@ -30,8 +30,8 @@ In this presentation, we will explore the processed files generated in the GPT-2
 
 ### **2️⃣ `dreams_interpretations.csv`**
 - 📍 **Location**: `data/processed/`, `data/raw_pdfs/`
-- 📄 **Content**: Processed txt file to csv and raw csv with dreams and their interpretations
-- 📌 **Purpose**: Datasets that are used for training the 2 models. One Kaggle Dataset and One Processed from PDF.
+- 📄 **Content**: Processed txt file to csv(from PDF file) and raw csv called Dictionary of dreams.
+- 📌 **Purpose**: Datasets that are used for training the 2 models. One Kaggle Dataset(`https://www.kaggle.com/datasets/manswad/dictionary-of-dreams`) and One Processed from PDF.
 
 
 ✅ **Examples Tokenized Output:**
